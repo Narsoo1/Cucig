@@ -1,8 +1,13 @@
 {
+  "name": "chatapp-backend",
   "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
-    "firebase-admin": "^11.10.1",
     "express": "^4.18.2",
+    "firebase-admin": "^11.10.1",
     "cors": "^2.8.5"
   }
 }
