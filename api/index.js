@@ -1,11 +1,13 @@
+// api/index.js
 import express from 'express';
 import cors from 'cors';
+import serverless from 'serverless-http';
 
-import checkUsername from './controllers/checkUsername.js';
-import deleteChatHistory from './controllers/deleteChatHistory.js';
-import logNewUser from './controllers/logNewUser.js';
-import sendChatNotification from './controllers/sendChatNotification.js';
-import updateReadStatus from './controllers/updateReadStatus.js';
+import checkUsername from '../controllers/checkUsername.js';
+import deleteChatHistory from '../controllers/deleteChatHistory.js';
+import logNewUser from '../controllers/logNewUser.js';
+import sendChatNotification from '../controllers/sendChatNotification.js';
+import updateReadStatus from '../controllers/updateReadStatus.js';
 
 const app = express();
 app.use(cors());
@@ -17,7 +19,4 @@ app.post('/logNewUser', logNewUser);
 app.post('/sendChatNotification', sendChatNotification);
 app.post('/updateReadStatus', updateReadStatus);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+export const handler = serverless(app);
