@@ -2,19 +2,26 @@
 import admin from "../firebaseAdminConfig.js";
 
 export default async function handler(req, res) {
-  if (req.method !== "POST") return res.status(405).send("Method Not Allowed");
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
 
   const { username } = req.body;
-  const db = admin.firestore();
+
+  if (!username || typeof username !== "string") {
+    return res.status(400).json({ error: "Username is required and must be a string." });
+  }
 
   try {
-    const snapshot = await db.collection("users").where("username", "==", username).get();
-    if (!snapshot.empty) {
-      res.status(200).json({ available: false });
-    } else {
-      res.status(200).json({ available: true });
-    }
+    const db = admin.firestore();
+    const snapshot = await db.collection("users")
+      .where("username", "==", username.trim().toLowerCase())
+      .get();
+
+    const available = snapshot.empty;
+    res.status(200).json({ available });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error checking username:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 }
