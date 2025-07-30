@@ -1,0 +1,51 @@
+# OS-SPECIFIC FILES
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# NODE.JS
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.*
+dist/
+build/
+coverage/
+logs/
+*.log
+
+# FIREBASE / CREDENTIALS
+serviceAccountKey.json
+firebase-debug.log
+
+# VERCEL
+.vercel/
+output/
+
+# IDEs/EDITOR FILES
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# TEST & TEMP FILES
+*.test.js
+*.spec.js
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# GIT FILES
+*.orig
+*.patch
+*.rej
+
+# ARCHIVE / OTHERS
+*.zip
+*.tar.gz
+*.tgz
